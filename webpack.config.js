@@ -23,15 +23,22 @@ module.exports = {
 		// 配置加载器
 		loaders: [
 			{
-				test: /\.sass$/,
+				test: /\.css$/,
 				// loader: 'style-loader!css-loader',
-				loader: ['style-loader','css-loader', 'sass-loader'],
+				loader: ['style-loader', 'css-loader'],
 				include: APP_PATH
 			},
 			{
-				test: /\.css$/,
-				loader: ['style-loader', 'css-loader'],
-				include: APP_PATH
+				test: /\.(png|jpe?g)$/,
+				loader: 'url-loader'
+			},
+			{
+				test: /\.jsx?$/,
+				loader: 'babel-loader',
+				include: APP_PATH,
+				query:{
+					presets: ['es2015']
+				}
 			}
 		]
 	},
