@@ -2,7 +2,7 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// 定义一些文件夹的路径
+// 定义文件夹的路径
 var ROOT_PATH = path.resolve(__dirname);
 var APP_PATH = path.resolve(ROOT_PATH, 'src');
 var BUILD_PATH = path.resolve(ROOT_PATH, 'build');
@@ -13,12 +13,28 @@ module.exports = {
 		path: BUILD_PATH, // 打包后的文件存放的路径
 		filename: 'bundle.js' // 打包后输出文件的文件名
 	},
-	// 添加我们的插件 会自动生成一个html文件
+	// 添加插件 会自动生成一个html文件
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'webpack demo'
 		})
 	],
+	module: {
+		// 配置加载器
+		loaders: [
+			{
+				test: /\.sass$/,
+				// loader: 'style-loader!css-loader',
+				loader: ['style-loader','css-loader', 'sass-loader'],
+				include: APP_PATH
+			},
+			{
+				test: /\.css$/,
+				loader: ['style-loader', 'css-loader'],
+				include: APP_PATH
+			}
+		]
+	},
 	// 本地服务器配置
 	devServer: {
 		contentBase: path.join(__dirname, '/build'), // 告诉服务器从哪里提供内容
