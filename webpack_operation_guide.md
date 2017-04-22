@@ -318,3 +318,4 @@ npm install babel-loader babel-preset-es2015 --save-dev
 
 在这个demo中使用了import，export，let，promise以及箭头函数等es6特性。
 
+详细完整的webpack配置详见webpack.config.js文件。
