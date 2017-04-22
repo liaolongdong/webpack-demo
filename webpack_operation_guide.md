@@ -13,7 +13,7 @@ cnpm install [name]
 
 
 ## 什么是webpack？
-![what is webpack?](./webpack.jpg "what is webpack?")
+![what is webpack?](./webpack.jpg "what is webpack?")  
 webpack是一个前端资源加载/打包工具。它将根据模块的依赖关系进行静态分析，然后将这些模块按照指定的规则生成对应的静态资源。
 
 
@@ -28,8 +28,8 @@ npm install -g webpack
 webpack是高度可配置的，但是，在开始配置之前我们需要先理解四个核心概念：入口(entry)、输出(output)、加载器(loader)、插件(plugin)。
 
 ### 入口(entry)
-entry是应用程序的起点入口。从这个起点开始，应用程序启动执行。
-简单规则：每个HTML页面都有一个入口起点。单页面应用(SPA)：一个入口起点，多页应用(MPA)：多个入口起点。
+entry是应用程序的起点入口。从这个起点开始，应用程序启动执行。  
+简单规则：每个HTML页面都有一个入口起点。单页面应用(SPA)：一个入口起点，多页应用(MPA)：多个入口起点。  
 如果传入一个字符串或字符串数组，chunk 会被命名为 main。如果传入一个对象，则每个键(key)会是 chunk 的名称，该值描述了 chunk 的入口起点。
 ```
 // entry: [string|[string]|object{<key>: string|[string]}]
@@ -47,8 +47,8 @@ entry是应用程序的起点入口。从这个起点开始，应用程序启动
 {
 	entry: {
 		pageOne: './src/pageOne/index.js',
-	    pageTwo: './src/pageTwo/index.js',
-	    pageThree: './src/pageThree/index.js'
+	    	pageTwo: './src/pageTwo/index.js',
+	    	pageThree: './src/pageThree/index.js'
 	}
 }
 ```
@@ -73,11 +73,11 @@ output是对应输出项配置，即入口文件最终要生成什么名字的�
 {
 	entry: {
 		app: './src/app.js',
-	    search: './src/search.js'
+	    	search: './src/search.js'
 	},
 	output: {
-	    path: __dirname + '/build',
-	    filename: '[name].bundle.js'
+	    	path: __dirname + '/build',
+	    	filename: '[name].bundle.js'
 	}
 }
 // 写入到硬盘：./build/app.bundle.js, ./build/search.bundle.js
@@ -87,10 +87,10 @@ output是对应输出项配置，即入口文件最终要生成什么名字的�
 loaders就是webpack最强大的地方了，不同的loaders通过正则来对不同模块文件进行处理。
 
 loaders常用配置项：
-- test: 一个匹配loaders所处理的文件的拓展名的正则表达式（必须）
+- test： 一个匹配loaders所处理的文件的拓展名的正则表达式（必须）
 - loader：loader的名称（必须）
-- include/exclude:手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）
-- query：为loaders提供额外的设置选项（可选）
+- include/exclude：手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）
+- query：为loaders提供额外的设置选项（可选）  
 PS：webpack2.0 loaders改成了rules，query改成了options，不过也兼容原来的写法
 ```
 module: {
@@ -114,19 +114,19 @@ plugins: [
 	// 构建优化插件
 	// 自定义公共模块提取，CommonsChunkPlugin插件用于提取这些依赖到共享的 bundle 中，来避免重复打包
   	new webpack.optimize.CommonsChunkPlugin({
-    	name: 'vendor',
-    	filename: 'vendor-[hash].min.js',
+    		name: 'vendor',
+    		filename: 'vendor-[hash].min.js',
   	}),
   	// 压缩混淆JS插件
   	new webpack.optimize.UglifyJsPlugin({
-    	compress: {
-      		warnings: false
-    	}
+		compress: {
+			warnings: false
+		}
   	}),
   	// 独立打包样式，ExtractTextPlugin可以把css从js中独立抽离出来
   	new ExtractTextPlugin({
-    	filename: 'build.min.css',
-    	allChunks: true
+    		filename: 'build.min.css',
+    		allChunks: true
   	})
 ]
 ```
@@ -280,7 +280,7 @@ npm install url-loader --save-dev
 注意后面那个limit的参数，当你图片大小小于这个限制的时候，会自动启用base64编码图片。
 
 ### 添加第三方库
-在项目开发中一般都会引入第三方库，比如jQuery、moment等
+在项目开发中一般都会引入第三方库，比如jQuery、moment等  
 安装jQuery和moment库
 ```
 npm install jquery moment --save-dev
