@@ -108,7 +108,12 @@ module: {
 ```
 
 ### 插件(plugin)
-插件是 wepback 的支柱功能。插件目的在于解决 loader 无法实现的其他事。
+插件是 wepback 的支柱功能。插件目的在于解决 loader 无法实现的其他事。  
+最常用的四个插件：CommonsChunkPlugin(公共模块提取插件)、UglifyJSPlugin(JS代码混淆压缩插件)、HtmlWebpackPlugin(html自动生成插件)和ExtractTextPlugin(独立样式打包插件)。  
+CommonsChunkPlugin和UglifyJsPlugin是webpack内置插件，因此可以不用安装，但是ExtractTextPlugin和HtmlWebpackPlugin插件需要手动安装。
+```
+npm install extract-text-webpack-plugin html-webpack-plugin --save-dev
+```
 ```
 plugins: [
 	// 构建优化插件
@@ -127,7 +132,14 @@ plugins: [
   	new ExtractTextPlugin({
     		filename: 'build.min.css',
     		allChunks: true
-  	})
+  	}),
+  	// html自动生成插件
+  	new HtmlWebpackPlugin({
+            template: path.join(__dirname,'template.html'),
+            filename:'index.html',
+            chunks:['vendor','app'],
+            hash: true
+    })
 ]
 ```
 
@@ -179,7 +191,7 @@ sub.js文件
 // 这里使用commonJS的风格
 function productText(){
 	var element = document.createElement('h2');
-	element.innerHTML = 'hello world h2';
+	element.innerHTML = 'webpack demo h2';
 	return element;
 }
 module.exports = pruductText;
@@ -189,7 +201,7 @@ index.js文件
 ```javascript
 var sub = require('./sub');
 var app = document.createElement('div');
-app.innerHTML = '<h1>Hello world</h1>';
+app.innerHTML = '<h1>webpack demo h1</h1>';
 app.appendChild(sub());
 document.body.appendChild(app);
 ```

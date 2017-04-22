@@ -23,7 +23,7 @@ import $ from 'jquery';
 import moment from 'moment';
 
 let app  = document.createElement('div');
-const myPromise = Promise.resolve(42);
+const myPromise = Promise.resolve(66);
 myPromise.then((number) => {
   $('body').append('<h3>promise result is ' + number + ' now is ' + moment().format('YYYY-MM-DD hh:mm:ss') + '</h3>');
 });
